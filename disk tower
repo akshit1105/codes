@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;
+    cin>>n;
+    int a[n];
+    priority_queue<int>big,betw;
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+        big.push(a[i]);
+    }
+    for(int i=0;i<n;i++)
+    {
+        if(a[i]==big.top())
+        {
+            cout<<a[i]<<" ";
+            big.pop();
+            while(!betw.empty()&&!big.empty())
+            {
+                if(betw.top()==big.top()){
+                    cout<<betw.top()<<" ";
+                    big.pop();
+                    betw.pop();
+                }
+                else{
+                    break;
+                }
+            }
+            cout<<endl;
+        }
+        else{
+            cout<<endl;
+            betw.push(a[i]);
+        }
+    }
+    return 0;
+}
