@@ -1,0 +1,44 @@
+
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        if(!head)
+            return head;
+        else{
+             ListNode *count=head;
+        ListNode *check=new ListNode(0);
+        ListNode *mink=check;
+        unordered_map<int,int>m;
+        while(count->next!=NULL)
+        {
+            m[count->val]++;
+            count=count->next;
+        }
+        m[count->val]++;
+        while(head->next!=NULL)
+        {
+            if(m[head->val]==1)
+            {
+                check->next=head;
+                check=check->next;
+                head=head->next;
+            }
+            else{
+                head=head->next;
+            }
+        }
+        if(m[head->val]==1)
+            {
+                check->next=head;
+                check=check->next;
+                check->next=NULL;
+            }
+            else{
+                check->next=NULL;
+            }
+           head=mink->next;
+        }
+       
+        return head; 
+    }
+};
