@@ -1,0 +1,81 @@
+Logic 1==== 1. MAKE ALL POSSIBLE SUBSTRINGS AND SIMULTANEOUSLY CHECK WHETHER CHARACTER ARE REPEATING OR NOT IF REPEATING DONT COUNT THAT SUBSTRING...
+
+Code for logic one====
+
+#include<bits/stdc++.h>
+using namespace std;
+bool hasp(string,int,int);
+int check(string ab1)
+{
+    int n=ab1.size();
+    int res=0;
+    for(int i=0;i<n;i++)
+    for(int j=i;j<n;j++)
+    if(hasp(ab1,i,j))
+    {
+        res=max(res,j-i+1);
+    }
+    return res;
+}
+bool hasp(string ab2,int i,int j)
+{ 
+    vector<bool>akshit(26);
+    for(int k=i;k<=j;k++)
+    {
+        if(akshit[ab2[k]-'a']==true)
+           return false;
+           else{
+               akshit[ab2[k]-'a']=true;
+           }
+    }
+    return true;
+}
+int main(void)
+{
+    string ab4;
+    getline(cin,ab4);
+    int x=check(ab4);
+    cout<<x;
+   
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+LOGIC 2 SLIDING WINDOW TECHNIQUE------ read code
+
+code----
+
+#include<bits/stdc++.h>
+using namespace std;
+int check(string ab1)
+{
+    int n=ab1.size();
+    int res=0;
+    for(int i=0;i<n;i++)
+    {
+        vector<bool>akshit(26);
+        for(int j=i;j<n;j++)                    
+        {
+            if(akshit[ab1[j]-'a']==true)
+            break;
+            else{
+                res=max(res,j-i+1);
+                akshit[ab1[j]-'a']=true;
+            }
+        }
+    }
+    return res;
+}
+int main(void)
+{
+    string ab4;
+    getline(cin,ab4);
+    int x=check(ab4);
+    cout<<x;
+   
+}
+
+
+
+
+
