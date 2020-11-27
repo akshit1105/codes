@@ -1,0 +1,19 @@
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        int s=strs.size();
+        vector<vector<string>>akshit;
+        unordered_map<string,vector<string>>man;
+        for(int i=0;i<s;i++)
+        {
+            string x=strs[i];
+            sort(x.begin(),x.end());
+            man[x].push_back(strs[i]);
+        }
+        for(auto i=man.begin();i !=man.end();i++)
+        {
+            akshit.push_back(i->second);
+        }
+        return akshit;
+    }
+};
