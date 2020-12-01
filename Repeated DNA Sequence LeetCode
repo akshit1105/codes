@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<string>akshit(string s)
+{
+	vector<string>anshul;
+	int n=s.size();
+	unordered_map<string,int>man;
+	 if(s.size()<10)
+		return {};
+	for(int i=0;i<n-9;i++)
+	{
+		
+		man[s.substr(i,10)]++;
+	}
+	for(auto i:man)
+	{
+		if(i.second>1)
+		{
+            anshul.push_back(i.first);
+		}
+	}
+	return anshul;
+}
+int main()
+{
+	string s;
+	cin>>s;
+	vector<string>ab=akshit(s);
+	for(auto i:ab)
+		cout<<endl<<i;
+	return 0;
+}
