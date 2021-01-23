@@ -1,0 +1,13 @@
+int maxSubArray(vector<int>& nums) {
+        int check=0,max=INT_MIN;
+        for(int item:nums)
+        {
+          check+=item;
+        if(check>max)
+            max=check;
+       if(check<=-1)
+            check=0;  
+        }
+            
+        return max;
+    }
