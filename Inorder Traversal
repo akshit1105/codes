@@ -1,0 +1,19 @@
+vector<int>helper(vector<int>&ab,Node* root)
+{
+    if(root)
+    {
+       helper(ab,root->left);
+    ab.push_back(root->data);
+    helper(ab,root->right);
+     
+    }
+    return ab;
+    
+}
+vector<int> inOrder(Node* root)
+{
+  // Your code here
+  vector<int>ab;
+  helper(ab,root);
+  return ab;
+}
