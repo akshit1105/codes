@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int a[102][102];
+    int fun(vector<vector<int>>& obstacleGrid,int m,int n)
+    {
+        if(obstacleGrid[m][n]==1)
+            return 0;
+        if(m==0 && n==0)
+            return 1;
+        if(m==0 || n==0)
+        {
+            if(m==0)
+            {
+                a[m][n]=fun(obstacleGrid,m,n-1);
+            return a[m][n];
+            }
+                
+            if(n==0)
+            {
+                a[m][n]=fun(obstacleGrid,m-1,n);
+                return a[m][n];
+            }
+        }
+        if(a[m][n]!=-1)
+            return a[m][n];
+        a[m][n]= fun(obstacleGrid,m-1,n)+fun(obstacleGrid,m,n-1);
+        return a[m][n];
+    }
+    int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        int x=obstacleGrid.size();
+        int y=obstacleGrid[0].size();
+        if(x==1 && y==1)
+            if(obstacleGrid[x-1][y-1]==0)
+            return 1;
+        else return 0;
+        memset(a,-1,sizeof(a));
+        return fun(obstacleGrid,x-1,y-1);
+        
+    }
+};
