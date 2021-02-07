@@ -1,0 +1,21 @@
+bool subArrayExists(int arr[], int n)
+{
+    set<int>ab;
+    int sum=0;
+    bool ams=false;
+    for(int i=0;i<n;i++)
+    {
+        ab.insert(sum);
+        sum+=arr[i];
+        if(ab.count(sum))
+        {
+            ams=true;
+            break;
+        }
+        
+    }
+    
+    
+    return ams;
+}
+
