@@ -1,0 +1,61 @@
+<<<< triplet sum==0 || triplet sum of any num=k>>>>>
+
+if you want triplets ka sum =k then 0 ki jaga ke kardo..
+
+<<< if want to return bool value>>>
+bool find3Numbers(int arr[], int N, int X)
+{
+    int i=0,j=i+1,k=N-1;
+    sort(arr,arr+N);
+    while(i<N-2)
+    {
+        j=i+1,k=N-1;
+        while(j<k)
+        {
+            int sum=arr[i]+arr[j]+arr[k];
+            if(sum<X)
+            j++;
+            else if(sum>X)
+            k--;
+            else {
+               return true;
+        }
+       
+    }
+    i++;
+}
+return false;
+}
+
+
+<<<<< if want to return tiplets that has sum>>>>
+class Solution {
+public:
+    vector<vector<int>> threeSum(vector<int>& nums) {
+       
+        set<vector<int>>ab;
+        int i=0,j,k;
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
+        while(i<n-2)
+        {
+            j=i+1;
+            k=n-1;
+            while(j<k)
+            {
+                int sum=nums[i]+nums[j]+nums[k];
+                if(sum<0)
+                    j++;
+                else if(sum>0)
+                    k--;
+                else{
+                    ab.insert(vector<int>({nums[i],nums[j],nums[k]}));
+                    j++;
+                    k--;
+                }
+            }
+            i++;
+        }
+        return vector<vector<int>>(ab.begin(),ab.end());
+    }
+};
