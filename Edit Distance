@@ -1,0 +1,52 @@
+******************RECURSION*****************
+
+int fun(string ss, string t,int m,int n)
+{
+   if(m==0)
+      return n;
+   if(n==0)
+      return m;
+   if(s[m-1]==t[n-1])
+     return fun(s,t,m-1,n-1);
+     reurn 1+min(fun(s,t,m.n-1),min(fun(s,t,m,n-1),fun(s,t,m-1,n-1)));
+     
+     }
+ 
+ 
+ ***********Memoization*****************
+ 
+ class Solution {
+public:
+    int a[502][502];
+    int minDistance(string word1, string word2) {
+        int m=word1.length();
+        int n=word2.length();
+        
+        memset(a,-1,sizeof(a));
+        return fun(word1,word2,m,n);
+    }
+    int fun(string s,string t,int m,int n)
+    {
+        if(m==0||n==0)
+        {
+            if(m==0 && n>0)
+            return n;
+            else if(m>0 &&n==0)
+            return m;
+            else return 0;
+        }
+        if(a[m][n]!=-1)
+        return a[m][n];
+        else if(s[m-1]==t[n-1])
+        {
+            a[m][n]=0+fun(s,t,m-1,n-1);
+        }
+        else{
+            a[m][n]=1+min(fun(s,t,m-1,n),min(fun(s,t,m,n-1),fun(s,t,m-1,n-1)));
+        }
+        return a[m][n];
+    }
+};
+**********************************************************************************8
+
+try to do it in dp form
