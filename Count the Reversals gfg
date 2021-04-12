@@ -1,0 +1,63 @@
+int count(string s)
+{
+stack<string>ab;
+    int ans=0;
+    
+    int n=s.size();
+    if(n%2!=0)
+    {
+        ans=-1;
+        return ans;
+    }
+    else{
+        for(int i=0;i<n;i++)
+          {
+              if(s[i]=='{')
+              ab.push("{");
+              else if(s[i]=='}')
+              {
+                  if(!ab.empty() && ab.top()=="{")
+                    ab.pop();
+                 else 
+                  ab.push("}");
+              }
+          }
+          if(ab.size()==0)
+          {
+              return ans;
+          }
+          else{
+              while(ab.size()!=0)
+          {
+             if(!ab.empty() &&ab.top()=="}")
+          {
+              ans+=1;
+              ab.pop();
+              ab.pop();
+          }
+          if( !ab.empty() &&ab.top()=="{")
+          {
+              ab.pop();
+              if(ab.size()!=0)
+              {
+                   if(ab.top()=="{")
+                   {
+                       ans+=1;
+                       ab.pop();
+                   }
+              else
+              {
+                  ans+=2;
+                  ab.pop();
+              }
+              
+              }
+             
+          } 
+          }
+          }
+          
+          
+    }
+    return ans;
+}
