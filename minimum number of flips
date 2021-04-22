@@ -1,0 +1,19 @@
+char check(char a)
+{
+    return (a=='0')?'1':'0';
+}
+int getty(string s,char expected)
+{
+    int flip=0;
+    for(int i=0;i<s.length();i++)
+    {
+        if(s[i]!=expected)
+        flip++;
+        expected=check(expected);
+    }
+    return flip;
+}
+int minFlips (string S)
+{
+    return min(getty(S,'0'),getty(S,'1'));
+}
