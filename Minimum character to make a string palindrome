@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    string st="AAABC";
+    int i=0;
+    int j=1;
+    while (j<st.length())
+    {
+        if(st[i]==st[j])
+        {
+            j++;
+            continue;
+        }
+        else break;
+
+    }
+    string ab;
+    for(int i=j;i<st.length();i++)
+    {
+        ab+=st[i];
+    }
+    reverse(ab.begin(),ab.end());
+    cout<<ab;
+    return 0;
+   
+}
