@@ -1,0 +1,119 @@
+// THIS QUESTION HERE IS SOLVED USING STACK COZ STACK PROPERTY 1,2,3 KO STACK ME DALENGE THEN 3,2,1 AYEGA RESULT THIS IS SO BECAUSE IT FOLLOWS LAST IN FIRST OUT(LIFO)
+//HERE GROUP SIZE I HAVE TAKEN IS 3 I.E K=3
+
+#include<bits/stdc++.h>
+using namespace std;
+struct Node{
+   int data;
+   struct Node* next;
+};
+int main(){
+  struct Node*head,*head1,*ptr;
+  int num;
+  cout<<"enter the data";
+  cin>>num;
+  head1=(struct Node*)malloc(sizeof(struct Node));
+  head1->data=num;
+  head1->next=NULL;
+  head=head1;
+  struct Node*ans=head;
+
+  int i=0;
+  while(i<8)
+  {
+      ptr=(struct Node*)malloc(sizeof(struct Node));
+      cout<<"enter the data";
+      cin>>num;
+      ptr->data=num;
+      ptr->next=NULL;
+      head1->next=ptr;
+      head1=head1->next;
+       i++;
+  }
+  struct Node* one=head;
+  while(head->next!=NULL)
+  {
+    cout<<head->data<<" ";
+    head=head->next;
+  }
+  cout<<head->data;
+  cout<<"\n";
+   int k=3;
+   struct Node*current;
+   current=ans;
+   struct Node*prev,*final;
+   prev=NULL;
+   stack<Node*>mystack;
+   while(current!=NULL)
+   {
+     int count =0;
+     while(current!=NULL && count<k)
+     {
+          mystack.push(current);
+          current=current->next;
+          count++;
+     }
+     while(mystack.size()>0)
+     {
+       if(prev==NULL)
+       {
+         prev=mystack.top();
+         final=prev;
+         mystack.pop();
+       }
+       else{
+         prev->next=mystack.top();
+         prev=prev->next;
+         mystack.pop();
+       }
+     }
+   }
+   prev->next=NULL; 
+   while(final!=NULL)
+   {
+     cout<<final->data<<"  ";
+     final=final->next;
+   }
+  return 0;
+
+}
+
+***********************************************************************LOGIC FUNCTION*****************************************************
+
+class Solution
+{
+    public:
+    struct node *reverse (struct node *head, int k)
+    { 
+         struct node*prev,*ans;
+         prev=NULL;
+         stack<node*>mystack;
+         while(head!=NULL)
+         {
+             int count=0;
+             while(head!=NULL && count<k)
+             {
+                 mystack.push(head);
+                 head=head->next;
+                 count++;
+             }
+             while(mystack.size()>0)
+             {
+                 if(prev==NULL)
+                 {
+                     prev=mystack.top();
+                     ans=prev;
+                     mystack.pop();
+                     
+                 }
+                 else{
+                     prev->next=mystack.top();
+                     prev=prev->next;
+                     mystack.pop();
+                 }
+             }
+         }
+         prev->next=NULL;
+         return ans;
+    }
+};
