@@ -1,0 +1,42 @@
+Node* findIntersection(Node* head1, Node* head2)
+{
+    // Your Code Here
+    struct Node*ans=NULL;
+    struct Node*final;
+    unordered_set<int>ab;
+    while(head1!=NULL)
+    {
+        ab.insert(head1->data);
+        head1=head1->next;
+    }
+    while(head2!=NULL)
+    {
+        if(ab.find(head2->data)!=ab.end())
+        {
+            struct Node*ptr=head2;
+            ab.erase(head2->data);
+            if(ans==NULL)
+            {
+                ans=ptr;
+                final=ans;
+              
+                head2=head2->next;
+                continue;
+              
+                
+            }
+            else{
+                ans->next=head2;
+                ans=ans->next;
+                head2=head2->next;
+                continue;
+            }
+        }
+        else{
+            head2=head2->next;
+            continue;
+        }
+    }
+    ans->next=NULL;
+    return final;
+}
