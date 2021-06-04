@@ -1,0 +1,59 @@
+class Solution {
+public:
+    void left(Node* root,vector<int>&ab)
+    {
+        if(root==NULL)
+        return;
+        if(root->left!=NULL)
+        {
+            ab.push_back(root->data);
+            left(root->left,ab);
+            
+        }
+        else if(root->right!=NULL)
+        {
+            ab.push_back(root->data);
+            left(root->right,ab);
+        }
+    }
+    void last(Node* root,vector<int>&ab)
+    {
+        if(root==NULL)
+        return;
+        if(root->left==NULL && root->right==NULL)
+        ab.push_back(root->data);
+        last(root->left,ab);
+        last(root->right,ab);
+    }
+    void right(Node* root,vector<int>&bc)
+    {
+        if(root==NULL)
+        return;
+        if(root->right!=NULL)
+        {
+            bc.push_back(root->data);
+            right(root->right,bc);
+        }
+        else if(root->left!=NULL)
+        {
+            bc.push_back(root->data);
+            right(root->left,bc);
+        }
+    }
+    vector <int> printBoundary(Node *root)
+    {
+        //Your code here
+        vector<int>ab;
+        vector<int>bc;
+        ab.push_back(root->data);
+        left(root->left,ab);
+        last(root,ab);
+        right(root->right,bc);
+        reverse(bc.begin(),bc.end());
+        for(auto i:bc)
+        {
+            ab.push_back(i);
+        }
+        return ab;
+    }
+};
