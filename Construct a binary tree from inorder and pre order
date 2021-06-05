@@ -1,0 +1,38 @@
+class Solution{
+    public:
+    int idx=0;
+    unordered_map<int,int>m;
+    Node* solve(int p[],int in[],int start,int end)
+    {
+        
+        if(start>end)
+        return NULL;
+        Node* res= (struct Node*)malloc(sizeof(struct Node));
+        res->data=p[idx];
+        idx++;
+        if(start==end)
+        {
+            res->left=NULL;
+            res->right=NULL;
+            return res;
+        }
+        int mid=m[res->data];
+        
+        res->left=solve(p,in,start,mid-1);
+        res->right=solve(p,in,mid+1,end);
+        return res;
+    }
+    Node* buildTree(int in[],int pre[], int n)
+    {
+        // Code here
+        idx=0;
+        m.clear();
+        for(int i=0;i<n;i++)
+        {
+            m[in[i]]=i;
+        }
+        Node* root=solve(pre,in,0,n-1);
+        return root;
+        
+    }
+};
